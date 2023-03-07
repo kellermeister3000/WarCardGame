@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var playerCard = "card7"
-    var cpuCard = "card13"
+    @State var playerCard = ""
+    @State var cpuCard = ""
     
-    var playerScore = 0
-    var cpuScore = 0
+    @State var playerScore = 0
+    @State var cpuScore = 0
     
     var body: some View {
         
@@ -69,7 +69,25 @@ struct ContentView: View {
     }
     
     func deal() {
-        print("Deal Cards")
+        // Randomize the player card
+        var playerCardValue = Int.random(in: 2...14)
+        playerCard = "card" + String(playerCardValue)
+        
+        // Randomize the cpu card
+        var cpuCardValue = Int.random(in: 2...14)
+        cpuCard = "card" + String(cpuCardValue)
+        
+        // Update the scores
+        if playerCardValue > cpuCardValue {
+            
+            // Add 1 to player score
+            playerScore += 1
+        }
+        else if cpuCardValue > playerCardValue {
+            
+            // Add 1 to cpu score
+            cpuScore += 1
+        }
     }
 }
 
